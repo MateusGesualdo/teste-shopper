@@ -1,0 +1,19 @@
+{
+  "name": "teste-shopper",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "repository": "https://github.com/MateusGesualdo/teste-shopper.git",
+  "author": "MateusGesualdo <57274184+MateusGesualdo@users.noreply.github.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  },
+"scripts": {
+  "start": "concurrently \"yarn workspace front start\" \"yarn workspace back start\" "
+}
+}
