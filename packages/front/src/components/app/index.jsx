@@ -29,7 +29,10 @@ function App() {
         Carregue aqui seu arquivo CSV
       </p>
 
+      <button>Validar</button>
+
       <Table data={scvData}/>
+      <button>Atualizar</button>
     </div>
   );
 }

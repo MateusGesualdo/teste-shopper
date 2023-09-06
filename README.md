@@ -32,10 +32,10 @@ npm install --location=global yarn
     - [ ] Validade dos valores informados como preço
     - [ ] Cumprimento dos requisitos funcionais
   - Após validação, exibir:
-    - [ ] Código
+    - [x] Código
     - [ ] Nome
     - [ ] Preço atual
-    - [ ] Novo preço
+    - [x] Novo preço
     - [ ] Mensagem de status da atualização
   - Botão "Atualizar" 
     - [ ] Só é habilitado se houver sucesso nas validações
