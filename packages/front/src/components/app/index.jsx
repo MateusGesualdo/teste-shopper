@@ -9,15 +9,18 @@ function App() {
   const [csvData, setCsvData] = useState([])
   const [validationData, setValidationData] = useState([])
   const [validationEnabled, setValidationEnabled] = useState(false)
+  const [updateEnabled, setUpdateEnabled] = useState(false)
+  const [message, setMessage] = useState("")
 
   const handleFileChange = event => {
     setValidationData([])
-    setValidationEnabled(false)
+    setUpdateEnabled(false)
 
     parser.parse(event.target.files[0], {
       header: true,
       complete: result => {
         setCsvData(result.data);
+        setValidationEnabled(result.data.length)
       }
     })
   }
@@ -30,15 +33,15 @@ function App() {
       )
 
       setValidationData(res.data);
-      setValidationEnabled(res.data.every(
+      setUpdateEnabled(res.data.every(
         row => row.status === "Ok"
       ))
     } catch (error) {
-      console.log(error.response.data.message);
+      setMessage(error.response.data.message);
     }
   }
 
-  const updatePrices = async()=>{
+  const updatePrices = async () => {
     try {
       await axios.post(
         "http://localhost:3003/update",
@@ -46,18 +49,20 @@ function App() {
       )
 
       setValidationData([]);
-      setValidationEnabled(false)
+      setUpdateEnabled(false)
+      setMessage("Preços atualizados!")
+
     } catch (error) {
-      console.log(error.response.data.message);
+      setMessage(error.response.data.message);
     }
   }
 
   return (
     <div className="App App-header">
 
-      <p>
-        Carregue aqui seu arquivo CSV
-      </p>
+      <h1>Teste Técnico - Shopper</h1>
+
+      <p>Carregue aqui seu arquivo CSV</p>
 
       <input
         type="file"
@@ -65,14 +70,28 @@ function App() {
         accept='.csv'
         onChange={handleFileChange} />
 
-      <button onClick={getValidationData}>Validar</button>
-
       <Table data={validationData} />
 
-      <button
-        disabled={!validationEnabled}
-        onClick={updatePrices}
-      >Atualizar</button>
+      <p>{message}</p>
+
+      <div>
+
+        <button
+          disabled={!validationEnabled}
+          onClick={getValidationData}
+        >
+          Validar
+        </button>
+
+        <button
+          id="Update-Button"
+          disabled={!updateEnabled}
+          onClick={updatePrices}
+        >
+          Atualizar
+        </button>
+
+      </div>
 
     </div>
   );
