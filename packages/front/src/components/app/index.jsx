@@ -8,9 +8,11 @@ function App() {
 
   const [csvData, setCsvData] = useState([])
   const [validationData, setValidationData] = useState([])
+  const [validationEnabled, setValidationEnabled] = useState(false)
 
   const handleFileChange = event => {
     setValidationData([])
+    setValidationEnabled(false)
 
     parser.parse(event.target.files[0], {
       header: true,
@@ -20,7 +22,7 @@ function App() {
     })
   }
 
-  const getValidationData = async data => {
+  const getValidationData = async () => {
     try {
       const res = await axios.post(
         "http://localhost:3003/validate",
@@ -28,6 +30,23 @@ function App() {
       )
 
       setValidationData(res.data);
+      setValidationEnabled(res.data.every(
+        row => row.status === "Ok"
+      ))
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  }
+
+  const updatePrices = async()=>{
+    try {
+      await axios.post(
+        "http://localhost:3003/update",
+        validationData
+      )
+
+      setValidationData([]);
+      setValidationEnabled(false)
     } catch (error) {
       console.log(error.response.data.message);
     }
@@ -46,11 +65,14 @@ function App() {
         accept='.csv'
         onChange={handleFileChange} />
 
-      <button onClick={() => getValidationData(csvData)}>Validar</button>
+      <button onClick={getValidationData}>Validar</button>
 
       <Table data={validationData} />
 
-      <button disabled>Atualizar</button>
+      <button
+        disabled={!validationEnabled}
+        onClick={updatePrices}
+      >Atualizar</button>
 
     </div>
   );

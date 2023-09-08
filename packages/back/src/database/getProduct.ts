@@ -1,9 +1,8 @@
-import { product } from "../types";
 import { connection } from "./connection";
 
-export async function selectProdductByCode(
+export async function getProduct(
   code: number
-): Promise<product> {
+) {
   const [product] = await connection
     .select("*")
     .from("products")

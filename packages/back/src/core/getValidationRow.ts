@@ -1,4 +1,4 @@
-import { VALIDATION_DATA_ROW_STATUS, csvDataRow, product, validationDataRow } from "../types";
+import { VALIDATION_DATA_ROW_STATUS, csvDataRow, product, validationDataRow } from "./types";
 
 export const getValidationRow = (
   dataRow: csvDataRow,
@@ -11,7 +11,6 @@ export const getValidationRow = (
     product_name: "",
     current_price: 0
   }
-  console.log(dataRow);
 
   if (dataRow.product_code === undefined) return {
     ...result,

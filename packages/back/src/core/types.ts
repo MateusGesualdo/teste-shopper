@@ -12,6 +12,8 @@ export enum VALIDATION_DATA_ROW_STATUS {
   INVALID_VALUE_FOR_NEW_PRICE = "Valor inválido de preço",
   SALES_PRICE_LOWER_THAN_COST = "O novo preço de venda não pode ser menor que o preço de custo do produto",
   PRICE_DIFFERENCE_TOO_LARGE = "O reajuste não pode exceder 10% do preço atual do produto",
+  INVALID_PACK_PRICE = "Preço do pack inconsistente com os preços dos produtos componentes",
+  MISSING_PACKS="Um ou mais pacotes que incluem este produto precisam ter os preços atualizados",
   OK = "Ok"
 }
 
@@ -30,7 +32,7 @@ export type product = {
   sales_price: number
 }
 
-export type pack = {
+export type packDataRow = {
   pack_id: number,
   product_id: number,
   qty: number
