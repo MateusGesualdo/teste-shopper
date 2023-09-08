@@ -4,7 +4,13 @@ function Table(props) {
 
   if (!props.data.length) return <></>
 
-  const columns = Object.keys(props.data[0])
+  const columns = [
+    "product_code",
+    "product_name",
+    "current_price",
+    "new_price",
+    "status"
+  ]
 
   return <table>
     <thead>

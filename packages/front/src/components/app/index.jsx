@@ -13,6 +13,9 @@ function App() {
   const [message, setMessage] = useState("")
 
   const handleFileChange = event => {
+
+    const fileName = event.target.files[0].name
+    
     setValidationData([])
     setUpdateEnabled(false)
 
@@ -21,6 +24,7 @@ function App() {
       complete: result => {
         setCsvData(result.data);
         setValidationEnabled(result.data.length)
+        setMessage(`Arquivo carregado: ${fileName}`)
       }
     })
   }
@@ -32,10 +36,14 @@ function App() {
         csvData
       )
 
-      setValidationData(res.data);
-      setUpdateEnabled(res.data.every(
+      setValidationData(res.data)
+
+      const updateIsValid = res.data.every(
         row => row.status === "Ok"
-      ))
+      )
+      setValidationEnabled(false)
+      setUpdateEnabled(updateIsValid)
+      setMessage("")
     } catch (error) {
       setMessage(error.response.data.message);
     }
@@ -49,6 +57,7 @@ function App() {
       )
 
       setValidationData([]);
+      setValidationEnabled(false)
       setUpdateEnabled(false)
       setMessage("Preços atualizados!")
 

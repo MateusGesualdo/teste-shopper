@@ -14,6 +14,6 @@ export const validatePrices = async (req: Request, res: Response) => {
 
     return res
       .status(500)
-      .send({ message: "Falha na base de dados" })
+      .send({ message: "Falha no servidor" })
   }
 }

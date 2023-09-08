@@ -11,21 +11,22 @@ export const updatePrices = async (req: Request, res: Response) => {
       row => row.status === "Ok"
     )
 
-    if(resultIsValid){
-      for(let row of result){
+    if (resultIsValid) {
+      for (let row of result) {
         await updateProductPrice(
-          Number(row.product_code), 
-          row.new_price)
+          Number(row.product_code),
+          row.new_price
+        )
       }
     }
 
-    res.send({message:"Ok"})
+    res.send({ message: "Ok" })
   } catch (error: any) {
 
     console.log(error.message);
 
     return res
       .status(500)
-      .send({ message: "Falha na base de dados" })
+      .send({ message: "Falha no servidor" })
   }
 }
