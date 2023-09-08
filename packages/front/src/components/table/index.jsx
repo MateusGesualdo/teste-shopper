@@ -2,24 +2,23 @@ import "./index.css"
 
 function Table(props) {
 
-  if (!props.data[0]) return <></>
+  if (!props.data.length) return <></>
 
-  const keys = Object.keys(props.data[0])
-  console.log(keys);
+  const columns = Object.keys(props.data[0])
 
   return <table>
     <thead>
       <tr>
-        {keys.map(
-          key => <th>{key}</th>
+        {columns.map(
+          (column, i) => <th key={i}>{column}</th>
         )}
       </tr>
     </thead>
     <tbody>
       {props.data.map(
-        row => <tr>
-          {keys.map(
-            key => <td>{row[key]}</td>
+        (row, i) => <tr key={i}>
+          {columns.map(
+            (column, j) => <td key={j}>{row[column]}</td>
           )}
         </tr>
       )}

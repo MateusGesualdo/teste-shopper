@@ -1,13 +1,11 @@
-import express from "express"
-import cors from "cors"
+import { app } from "./api/app"
+import { updatePrices } from "./api/requestHandlers/updatePrices"
+import { validatePrices } from "./api/requestHandlers/validatePrices"
 
-const app = express()
+app.post("/validate", validatePrices)
 
-app.use(express.json())
-app.use(cors())
+app.post("/update", updatePrices)
 
-app.get("/", (req, res) => {
-  res.send("oi")
+app.listen(3003, () => {
+  console.log("Servidor rodando na porta 3003")
 })
-
-app.listen(3003, ()=>{console.log("rodando")})
