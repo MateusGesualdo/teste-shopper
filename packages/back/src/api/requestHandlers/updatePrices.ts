@@ -15,7 +15,8 @@ export const updatePrices = async (req: Request, res: Response) => {
       for (let row of result) {
         await updateProductPrice(
           Number(row.product_code),
-          row.new_price
+          row.new_price,
+          row.cost_price
         )
       }
     }

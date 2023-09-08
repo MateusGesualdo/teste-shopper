@@ -13,7 +13,8 @@ export type product = {
 export type pack = {
   pack_id: number,
   product_id: number,
-  qty: number
+  qty: number,
+  cost_price: number
 }
 
 export enum VALIDATION_DATA_ROW_STATUS {
@@ -35,4 +36,5 @@ export type updateOutput = {
   current_price: number
   new_price: number
   status: VALIDATION_DATA_ROW_STATUS
+  cost_price?:number
 }
