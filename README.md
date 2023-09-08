@@ -18,7 +18,7 @@ npm install --location=global yarn
   - [x] Reajuste máximo de 10% do preço original
   - [ ] Preço de venda dos pacotes deve ser sempre igual à soma dos preços individuais dos produtos que o compõem
   - [ ] O preço de custo dos pacotes deve ser a soma dos custos dos seus componentes.
-  - [ ] Os preço de custo dos produtos que não são pacotes não deve ser atualizado
+  - [x] Os preço de custo dos produtos que não são pacotes não deve ser atualizado
 
 ### Técnicos
 

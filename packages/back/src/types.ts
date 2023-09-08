@@ -6,8 +6,8 @@ export type csvDataRow = {
 export type csvData = csvDataRow[]
 
 export enum VALIDATION_DATA_ROW_STATUS {
-  MISSING_COLUMN_PRODUCT_CODE = "Campo 'product_code' não encontrado, confira o arquivo csv",
-  MISSING_COLUMN_NEW_PRICE = "Campo 'new_price' não encontrado, confira o arquivo csv",
+  MISSING_COLUMN_PRODUCT_CODE = "Campo 'product_code' não encontrado",
+  MISSING_COLUMN_NEW_PRICE = "Campo 'new_price' não encontrado",
   PRODUCT_CODE_NOT_FOUND = "Código de produto não encontrado",
   INVALID_VALUE_FOR_NEW_PRICE = "Valor inválido de preço",
   SALES_PRICE_LOWER_THAN_COST = "O novo preço de venda não pode ser menor que o preço de custo do produto",
@@ -28,4 +28,10 @@ export type product = {
   name: string
   cost_price: number
   sales_price: number
+}
+
+export type pack = {
+  pack_id: number,
+  product_id: number,
+  qty: number
 }
