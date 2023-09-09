@@ -35,6 +35,21 @@ DB_PASSWORD = sua_senha
 yarn workspace back create-schema 
 ``` 
 
+1. Adicione a variável `DB_SCHEMA` ao seu arquivo `.env`. Ele deverá ficar assim:
+``` 
+DB_HOST = 127.0.0.1
+DB_USER = seu_nome_de_usuario 
+DB_PASSWORD = sua_senha
+DB_SCHEMA = teste_shopper
+``` 
+
+1. Inicie o projeto executando o seguinte comando no seu terminal:
+``` 
+yarn start
+``` 
+
+1. Use os arquivos da pasta `./arquivos-teste` para testar as funcionalidades da aplicação
+
 ## Requisitos 
 
 ### Funcionais
