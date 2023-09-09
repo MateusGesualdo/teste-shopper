@@ -42,6 +42,6 @@ connection.raw(`
   INSERT INTO packs (pack_id,product_id, qty) VALUES (1020,19,3);
   INSERT INTO packs (pack_id,product_id, qty) VALUES (1020,21,3);
 `)
-  .then(console.log)
-  .catch(console.log)
+  .then(() => console.log("Tabelas criadas!"))
+  .catch(err => console.log(err.sqlMessage))
   .finally(() => { connection.destroy() })
