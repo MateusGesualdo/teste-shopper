@@ -1,25 +1,20 @@
-import { VALIDATION_DATA_ROW_STATUS, csvDataRow, product, validationDataRow } from "./types";
+import { VALIDATION_DATA_ROW_STATUS, product, updateInput, updateOutput } from "./types";
 
-export const getValidationRow = (
-  dataRow: csvDataRow,
-  product: product
-): validationDataRow => {
+export const getUpdateOutput = (
+  updateInput: updateInput,
+  product?: product
+):updateOutput => {
 
   const result = {
-    product_code: dataRow.product_code,
-    new_price: dataRow.new_price,
+    product_code: Number(updateInput.product_code),
+    new_price: Number(updateInput.new_price),
     product_name: "",
     current_price: 0
   }
 
-  if (dataRow.product_code === undefined) return {
+  if (updateInput.product_code === undefined) return {
     ...result,
     status: VALIDATION_DATA_ROW_STATUS.MISSING_COLUMN_PRODUCT_CODE
-  }
-
-  if (dataRow.new_price === undefined) return {
-    ...result,
-    status: VALIDATION_DATA_ROW_STATUS.MISSING_COLUMN_NEW_PRICE
   }
 
   if (!product) return {
@@ -27,10 +22,15 @@ export const getValidationRow = (
     status: VALIDATION_DATA_ROW_STATUS.PRODUCT_CODE_NOT_FOUND
   }
 
-  result.product_name = product.name
-  result.current_price = product.sales_price
+  if (updateInput.new_price === undefined) return {
+    ...result,
+    status: VALIDATION_DATA_ROW_STATUS.MISSING_COLUMN_NEW_PRICE
+  }
 
-  const new_price = Number(dataRow.new_price)
+  result.product_name = product.product_name
+  result.current_price = product.current_price
+
+  const new_price = Number(updateInput.new_price)
 
   if (
     isNaN(new_price)
@@ -59,5 +59,4 @@ export const getValidationRow = (
     ...result,
     status: VALIDATION_DATA_ROW_STATUS.OK
   }
-
 }
