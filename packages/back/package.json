@@ -16,6 +16,7 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "start": "tsnd --transpile-only ./src/index.ts"
+    "start": "tsnd --transpile-only ./src/index.ts",
+    "create-schema":"tsnd --transpile-only ./src/database/createSchema.ts"
   }
 }

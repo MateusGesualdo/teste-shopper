@@ -1,12 +1,38 @@
 # Teste Shopper
 
-## Executando localmente
+## Executando o projeto localmente
 
-- Caso não tenha o NodeJS instalado, clique [aqui](https://nodejs.org/en/download) e faça a instalação seguindo as instruções do site
+1. Caso não tenha o NodeJS instalado, clique [aqui](https://nodejs.org/en/download) e faça a instalação seguindo as instruções do site
 
-- Caso não tenha o Yarn instalado, faça a instalação executando o seguinte comando no seu terminal:
+1. Caso não tenha o MySql Server instalado, clique [aqui](https://dev.mysql.com/downloads/mysql/) e faça a instalação seguindo as instruções do site
+
+1. Caso não tenha o Yarn instalado, faça a instalação executando o seguinte comando no seu terminal:
 ``` bash
 npm install --location=global yarn
+``` 
+
+1. Clone o repositório executando o seguinte comando no seu terminal:
+``` bash
+git clone https://github.com/MateusGesualdo/teste-shopper.git
+``` 
+
+1. Ainda no terminal, navegue até a raiz do projeto e instale as dependências executando o seguinte comando:
+``` bash
+  yarn
+``` 
+
+1. Na pasta `./packages/back`, adicione um arquivo `.env`, contendo as seguintes variáveis de ambiente:
+``` 
+DB_HOST = 127.0.0.1
+DB_USER = seu_nome_de_usuario 
+DB_PASSWORD = sua_senha
+``` 
+
+1. Inicie o servidor local MySql
+
+1. Crie as tabelas de produtos executando o seguinte comando no seu terminal:
+``` 
+yarn workspace back create-schema 
 ``` 
 
 ## Requisitos 
